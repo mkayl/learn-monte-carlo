@@ -1,0 +1,12 @@
+montecarlo:
+  custom_sql:
+    - sql: SELECT cc_tax_percentage FROM snowflake_sample_data.tpcds_sf100tcl.call_center WHERE cc_tax_percentage < 0
+      comparisons: 
+        - type: threshold
+          operator: GTE
+          threshold_value: 0
+      description: Tax percentage must be positive
+      schedule:
+        type: fixed  # must be fixed
+        start_time: "2022-10-16T00:00:00"
+        interval_minutes: 1440
